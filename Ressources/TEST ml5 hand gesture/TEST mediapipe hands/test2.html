@@ -26,28 +26,28 @@
             for (const landmarks of results.multiHandLandmarks) {
               drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
                              {color: '#00FF00', lineWidth: 5});
-              drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
+              drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 1});
               let chiffre = 0;
 
               if(landmarks[2].y > landmarks[9].y){
                 console.log("actuel");
 
-                if (landmarks[8].y < landmarks[7].y){
+                if (landmarks[8].y < landmarks[7].y && landmarks[6].y < landmarks[5].y){
                 chiffre += 1;
                 console.log("index");
                 }
 
-                if (landmarks[12].y < landmarks[11].y){
+                if (landmarks[12].y < landmarks[11].y && landmarks[10].y < landmarks[9].y){
                   chiffre += 1;
                   console.log("majeur");
                 }
 
-                if (landmarks[16].y < landmarks[15].y){
+                if (landmarks[16].y < landmarks[15].y && landmarks[14].y < landmarks[13].y){
                   chiffre += 1;
                   console.log("annulaire");
                 }
 
-                if (landmarks[20].y < landmarks[19].y){
+                if (landmarks[20].y < landmarks[19].y && landmarks[18].y < landmarks[17].y){
                   chiffre += 1;
                   console.log("auriculaire");
                 }
