@@ -36,12 +36,12 @@ const videoElement = document.getElementsByClassName('input_video')[0];
                   chiffre += 1;
                   console.log("auriculaire");
                 }
-
+                //Pouce à gauche de la mains
                 if((landmarks[4].x > landmarks[3].x) &&(landmarks[20].x < landmarks[4].x) && (landmarks[8].x - landmarks[0].x)-(landmarks[4].x - landmarks[0].x)<0){
                   console.log("pouce1");
                   chiffre += 1;
                 }
-                
+                //Pouce à gauche de la mains
                 if((landmarks[4].x < landmarks[3].x) &&(landmarks[20].x > landmarks[4].x) && (landmarks[8].x - landmarks[0].x)-(landmarks[4].x - landmarks[0].x)>0){
                   console.log("pouce2");
                   chiffre += 1;
@@ -55,42 +55,42 @@ const videoElement = document.getElementsByClassName('input_video')[0];
                     console.log("pouce bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à gauche de la mains
                 if( (landmarks[7].x > landmarks[0].x) && (landmarks[8].x > landmarks[7].x)){
                     console.log("index bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à droite de la mains
                 if( (landmarks[7].x < landmarks[0].x) && (landmarks[8].x < landmarks[7].x)){
                     console.log("index bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à gauche de la mains
                 if( (landmarks[11].x > landmarks[0].x) && (landmarks[12].x > landmarks[11].x)){
                     console.log("majeur bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à droite de la mains
                 if( (landmarks[11].x < landmarks[0].x) && (landmarks[12].x < landmarks[11].x)){
                     console.log("majeur bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à gauche de la mains
                 if( (landmarks[15].x > landmarks[0].x) && (landmarks[16].x > landmarks[15].x)){
                     console.log("annulaire bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à droite de la mains
                 if( (landmarks[15].x < landmarks[0].x) && (landmarks[16].x < landmarks[15].x)){
                     console.log("annulaire bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à gauche de la mains
                 if( (landmarks[19].x > landmarks[0].x) && (landmarks[20].x > landmarks[19].x)){
                     console.log("auriculaire bleu");
                     chiffre += 1;
                 }
-
+                //Doigt à droite de la mains
                 if( (landmarks[19].x < landmarks[0].x) && (landmarks[20].x < landmarks[19].x)){
                     console.log("auriculaire bleu");
                     chiffre += 1;
