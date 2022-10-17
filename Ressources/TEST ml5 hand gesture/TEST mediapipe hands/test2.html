@@ -27,7 +27,39 @@
               drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
                              {color: '#00FF00', lineWidth: 5});
               drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
+              let chiffre = 0;
+
+              if(landmarks[2].y > landmarks[5].y){
+                console.log("actuel");
+
+                if (landmarks[8].y < landmarks[7].y){
+                chiffre += 1;
+                console.log("index");
+                }
+
+                if (landmarks[12].y < landmarks[11].y){
+                  chiffre += 1;
+                  console.log("majeur");
+                }
+
+                if (landmarks[16].y < landmarks[15].y){
+                  chiffre += 1;
+                  console.log("annulaire");
+                }
+
+                if (landmarks[20].y < landmarks[19].y){
+                  chiffre += 1;
+                  console.log("auriculaire");
+                }
+
+              }
+
+              
+
+
+              console.log(chiffre)
             }
+
           }
           canvasCtx.restore();
         }
