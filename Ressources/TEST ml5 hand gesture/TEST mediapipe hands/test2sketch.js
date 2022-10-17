@@ -6,6 +6,13 @@ let resultatM1 = [];
 let resultatM2 = [];
 let resultatTotal = [];
 
+let zero = [];
+let un = [];
+let deux = [];
+let trois = [];
+let quatre = [];
+let cinq = [];
+
 
 function onResults(results) {
     canvasCtx.save();
@@ -117,11 +124,37 @@ function onResults(results) {
 
     }
 
-    //Affichage du resultat
+    //Affichage du resultat main 1
     console.log("chiffre 1:",chiffre1);
     let resultatAffiche1 = document.getElementById("resultatAffiche1").innerHTML = chiffre1;
+    //Liste contenant les chiffres enregistré
     resultatM1.push(chiffre1);
     console.log("M1",resultatM1);
+    if (resultatM1.length >= 20){
+        let m120der = resultatM1.slice(-20);
+        console.log("-------------",m120der);
+        for (let i in m120der){
+            if (i==0){
+                zero.push(i);
+            }
+            if (i==1){
+                un.push(i);
+            }
+            if (i==2){
+                deux.push(i);
+            }
+            if (i==3){
+                trois.push(i);
+            }
+            if (i==4){
+                quatre.push(i);
+            }
+            if (i==5){
+                cinq.push(i);
+            }
+        }
+        // console.log(deux);
+    }
     }
 
     //Main 2
