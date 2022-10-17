@@ -14,6 +14,7 @@
     let dateDerExec = 0;
     var frGaucheAudio = new Audio("audio/FRgauche.mp3");
     var frDroiteAudio = new Audio("audio/FRdroite.mp3");
+    let derPosBras;
 
 
     async function init() {
@@ -81,13 +82,16 @@
             if(gauche > 0.99) {
                 console.log("gauche");
                 frGaucheAudio.play();
+                derPosBras = "g";
             }
             else if(droite > 0.99) {
                 console.log("droite");
                 frDroiteAudio.play();
+                derPosBras = "d";
             }
             else{
                 console.log("neutre");
+                derPosBras = "n";
             }
         }
         
