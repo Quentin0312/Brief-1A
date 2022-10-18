@@ -15,6 +15,9 @@ let cinq = [];
 
 let iterations = 20;
 
+let mainM1;
+let mainM2;
+
 function onResults(results) {
     canvasCtx.save();
 //   canvasCtx.scale(-1,-1);
@@ -208,21 +211,27 @@ function onResults(results) {
 
             if (sommeUn > 1*iterations*pourcentage){
                 document.getElementById("resultatM1Time").innerHTML = "Main 1=> 1";
+                mainM1 = 1;
             }
             else if (sommeDeux > 2*iterations*pourcentage){
                 document.getElementById("resultatM1Time").innerHTML = "Main 1=> 2";
+                mainM1 = 2;
             }
             else if (sommeTrois > 3*iterations*pourcentage){
                 document.getElementById("resultatM1Time").innerHTML = "Main 1=> 3";
+                mainM1 = 3;
             }
             else if (sommeQuatre > 4*iterations*pourcentage){
                 document.getElementById("resultatM1Time").innerHTML = "Main 1=> 4";
+                mainM1 = 4;
             }
             else if (sommeCinq > 5*iterations*pourcentage){
                 document.getElementById("resultatM1Time").innerHTML = "Main 1=> 5";
+                mainM1 = 5;
             }
             else{
                 document.getElementById("resultatM1Time").innerHTML = "Main 1=> Pas compris";
+                mainM1 = "erreur";
             }
 
         }
@@ -401,22 +410,28 @@ function onResults(results) {
             let pourcentage= 0.75;
 
             if (sommeUn > 1*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 1";
+                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 1";
+                mainM2 = 1;
             }
             else if (sommeDeux > 2*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 2";
+                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 2";
+                mainM2 = 2;
             }
             else if (sommeTrois > 3*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 3";
+                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 3";
+                mainM2 = 3;
             }
             else if (sommeQuatre > 4*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 4";
+                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 4";
+                mainM2 = 4;
             }
             else if (sommeCinq > 5*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 5";
+                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 5";
+                mainM2 = 5;
             }
             else{
-                document.getElementById("resultatM2Time").innerHTML = "Main 1=> Pas compris";
+                document.getElementById("resultatM2Time").innerHTML = "Main 2=> Pas compris";
+                mainM2 = "erreur";
             }
 
         }
@@ -425,8 +440,17 @@ function onResults(results) {
         chiffreTotal = chiffre1 + chiffre2;
         let resultatAfficheTotal = document.getElementById("resultatAfficheTotal").innerHTML = "Live total : "+chiffreTotal;
 
-        resultatTotal.push(chiffreTotal);
-        console.log("Total:",resultatTotal);
+        //Timing du resultat total main
+        let totalTime = mainM1 + mainM2;
+        if (totalTime >=1 && totalTime <=10){
+            document.getElementById("resultatTotalTime").innerHTML = totalTime;
+        }
+        else{
+            document.getElementById("resultatTotalTime").innerHTML = "Pas compris";
+        }
+
+
+
     }
 
 
