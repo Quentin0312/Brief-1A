@@ -36,125 +36,155 @@ function onResults(results) {
 
     //Main 1
     if (results.multiHandLandmarks[0]){
-    let main1 = results.multiHandLandmarks[0];
-    chiffre1 = 0;
+        let main1 = results.multiHandLandmarks[0];
+        chiffre1 = 0;
 
-    //Pos main
-    if(main1[2].y > main1[9].y){ //Quand mains "à l'endroit"
-        // console.log("actuel");
+        //Pos main
+        if(main1[2].y > main1[9].y){ //Quand mains "à l'endroit"
+            // console.log("actuel");
 
-        if (main1[8].y < main1[7].y && main1[6].y < main1[5].y){
-        chiffre1 += 1;
-        // console.log("index");
-        }
-
-        if (main1[12].y < main1[11].y && main1[10].y < main1[9].y){
+            if (main1[8].y < main1[7].y && main1[6].y < main1[5].y){
             chiffre1 += 1;
-        //   console.log("majeur");
-        }
+            // console.log("index");
+            }
 
-        if (main1[16].y < main1[15].y && main1[14].y < main1[13].y){
+            if (main1[12].y < main1[11].y && main1[10].y < main1[9].y){
+                chiffre1 += 1;
+            //   console.log("majeur");
+            }
+
+            if (main1[16].y < main1[15].y && main1[14].y < main1[13].y){
+                chiffre1 += 1;
+            //   console.log("annulaire");
+            }
+
+            if (main1[20].y < main1[19].y && main1[18].y < main1[17].y){
+                chiffre1 += 1;
+            //   console.log("auriculaire");
+            }
+            //Pouce à gauche de la mains
+            if((main1[4].x > main1[3].x) &&(main1[20].x < main1[4].x) && (main1[8].x - main1[0].x)-(main1[4].x - main1[0].x)<0){
+            //   console.log("pouce1");
+                chiffre1 += 1;
+            }
+            //Pouce à gauche de la mains
+            if((main1[4].x < main1[3].x) &&(main1[20].x > main1[4].x) && (main1[8].x - main1[0].x)-(main1[4].x - main1[0].x)>0){
+            //   console.log("pouce2");
+                chiffre1 += 1;
+            }
+
+        }
+        else if(true){ // Quand mains "allongé"
+        // console.log("et ouis")
+
+        if(main1[4].y < main1[3].y){
+            // console.log("pouce bleu");
             chiffre1 += 1;
-        //   console.log("annulaire");
         }
-
-        if (main1[20].y < main1[19].y && main1[18].y < main1[17].y){
-            chiffre1 += 1;
-        //   console.log("auriculaire");
-        }
-        //Pouce à gauche de la mains
-        if((main1[4].x > main1[3].x) &&(main1[20].x < main1[4].x) && (main1[8].x - main1[0].x)-(main1[4].x - main1[0].x)<0){
-        //   console.log("pouce1");
+        //Doigt à gauche de la mains
+        if( (main1[7].x > main1[0].x) && (main1[8].x > main1[7].x)){
+            // console.log("index bleu");
             chiffre1 += 1;
         }
-        //Pouce à gauche de la mains
-        if((main1[4].x < main1[3].x) &&(main1[20].x > main1[4].x) && (main1[8].x - main1[0].x)-(main1[4].x - main1[0].x)>0){
-        //   console.log("pouce2");
+        //Doigt à droite de la mains
+        if( (main1[7].x < main1[0].x) && (main1[8].x < main1[7].x)){
+            // console.log("index bleu");
+            chiffre1 += 1;
+        }
+        //Doigt à gauche de la mains
+        if( (main1[11].x > main1[0].x) && (main1[12].x > main1[11].x)){
+            // console.log("majeur bleu");
+            chiffre1 += 1;
+        }
+        //Doigt à droite de la mains
+        if( (main1[11].x < main1[0].x) && (main1[12].x < main1[11].x)){
+            // console.log("majeur bleu");
+            chiffre1 += 1;
+        }
+        //Doigt à gauche de la mains
+        if( (main1[15].x > main1[0].x) && (main1[16].x > main1[15].x)){
+            // console.log("annulaire bleu");
+            chiffre1 += 1;
+        }
+        //Doigt à droite de la mains
+        if( (main1[15].x < main1[0].x) && (main1[16].x < main1[15].x)){
+            // console.log("annulaire bleu");
+            chiffre1 += 1;
+        }
+        //Doigt à gauche de la mains
+        if( (main1[19].x > main1[0].x) && (main1[20].x > main1[19].x)){
+            // console.log("auriculaire bleu");
+            chiffre1 += 1;
+        }
+        //Doigt à droite de la mains
+        if( (main1[19].x < main1[0].x) && (main1[20].x < main1[19].x)){
+            // console.log("auriculaire bleu");
             chiffre1 += 1;
         }
 
-    }
-    else if(true){ // Quand mains "allongé"
-    // console.log("et ouis")
-
-    if(main1[4].y < main1[3].y){
-        // console.log("pouce bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à gauche de la mains
-    if( (main1[7].x > main1[0].x) && (main1[8].x > main1[7].x)){
-        // console.log("index bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à droite de la mains
-    if( (main1[7].x < main1[0].x) && (main1[8].x < main1[7].x)){
-        // console.log("index bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à gauche de la mains
-    if( (main1[11].x > main1[0].x) && (main1[12].x > main1[11].x)){
-        // console.log("majeur bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à droite de la mains
-    if( (main1[11].x < main1[0].x) && (main1[12].x < main1[11].x)){
-        // console.log("majeur bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à gauche de la mains
-    if( (main1[15].x > main1[0].x) && (main1[16].x > main1[15].x)){
-        // console.log("annulaire bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à droite de la mains
-    if( (main1[15].x < main1[0].x) && (main1[16].x < main1[15].x)){
-        // console.log("annulaire bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à gauche de la mains
-    if( (main1[19].x > main1[0].x) && (main1[20].x > main1[19].x)){
-        // console.log("auriculaire bleu");
-        chiffre1 += 1;
-    }
-    //Doigt à droite de la mains
-    if( (main1[19].x < main1[0].x) && (main1[20].x < main1[19].x)){
-        // console.log("auriculaire bleu");
-        chiffre1 += 1;
-    }
-
-    }
-
-    //Affichage du resultat main 1
-    console.log("chiffre 1:",chiffre1);
-    let resultatAffiche1 = document.getElementById("resultatAffiche1").innerHTML = chiffre1;
-    //Liste contenant les chiffres enregistré
-    resultatM1.push(chiffre1);
-    console.log("M1",resultatM1);
-    if (resultatM1.length >= 20){
-        let m120der = resultatM1.slice(-20);
-        console.log("-------------",m120der);
-        for (let i in m120der){
-            if (i==0){
-                zero.push(i);
-            }
-            if (i==1){
-                un.push(i);
-            }
-            if (i==2){
-                deux.push(i);
-            }
-            if (i==3){
-                trois.push(i);
-            }
-            if (i==4){
-                quatre.push(i);
-            }
-            if (i==5){
-                cinq.push(i);
-            }
         }
-        // console.log(deux);
-    }
+
+        //Affichage du resultat main 1
+        console.log("chiffre 1:",chiffre1);
+        let resultatAffiche1 = document.getElementById("resultatAffiche1").innerHTML = chiffre1;
+        //Liste contenant les chiffres enregistré
+        resultatM1.push(chiffre1);
+        console.log("M1",resultatM1);
+        if (resultatM1.length >= 20){
+            let m120der = resultatM1.slice(-20);
+            console.log("-------------",m120der);
+            for (let i = 0;i < 20; i++){
+
+                if (m120der[i]==0){
+                    zero.push(0);
+                }
+                else{
+                    zero.push(0);
+                }
+                if (m120der[i]==1){
+                    un.push(1);
+                }
+                else{
+                    un.push(0);
+                }
+                if (m120der[i]==2){
+                    deux.push(2);
+                }
+                else{
+                    deux.push(0);
+                }
+                if (m120der[i]==3){
+                    trois.push(3);
+                }
+                else{
+                    trois.push(0);
+                }
+                if (m120der[i]==4){
+                    quatre.push(4);
+                }
+                else{
+                    quatre.push(0);
+                }
+                if (m120der[i]==5){
+                    cinq.push(5);
+                }
+                else{
+                    cinq.push(0);
+                }
+
+            }
+            zero = zero.slice(-20);
+            un = un.slice(-20);
+            deux = deux.slice(-20);
+            trois = trois.slice(-20);
+            quatre = quatre.slice(-20);
+            cinq = cinq.slice(-20);
+            console.log("5=>",cinq);
+
+            
+
+
+        }
     }
 
     //Main 2
@@ -281,7 +311,7 @@ const camera = new Camera(videoElement, {
     onFrame: async () => {
     await hands.send({image: videoElement});
     },
-    width: 1280,
-    height: 720,
+    width: 640,
+    height: 360,
 });
 camera.start();
