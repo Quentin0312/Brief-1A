@@ -21,6 +21,9 @@ let totalTime;
 
 let symboleIndexs = [];
 
+let operande1 = 0;
+let operande2 = 0;
+
 function onResults(results) {
     canvasCtx.save();
 //   canvasCtx.scale(-1,-1);
@@ -454,6 +457,18 @@ function onResults(results) {
         document.getElementById("resultatM2Time").innerHTML = "Main 2 : "+mainM2;
     }
 
+    if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
+        //Détermine le symbole contact indexs
+        let hand1 = results.multiHandLandmarks[0];
+        let hand2 = results.multiHandLandmarks[1];
+
+        let indexs = (hand1[8].x) - (hand2[8].x);
+        indexs = Math.abs(indexs);
+
+        let phalangeIndexs = (hand1[8].x)-(hand1[7].x);
+        phalangeIndexs = Math.abs(phalangeIndexs);
+    
+    }
 
 
 
@@ -488,12 +503,20 @@ function onResults(results) {
             if (derSymboleIndexsVerdict > 0.90*iterations){
                 console.log("onyest");
                 // => ici enregistrer la valeur precedente de main 1 ou total et entre dans variable lien autre fonctionnalité, universelle => permet d'entrer une valeur
+                if (operande1 = 0){
+                    operande1 = totalTime;
+                    derSymboleIndexsVerdict = 0;
+                }
+                else{
+                    operande2 = totalTime;
+                }
             }
         }
 
     }
 
     //Fonctionnalite Multiplication - Coeur
+    
 
 
 
