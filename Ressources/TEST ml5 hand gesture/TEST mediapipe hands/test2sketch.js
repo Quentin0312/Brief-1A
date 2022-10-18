@@ -60,7 +60,7 @@ function onResults(results) {
 
 
     //Main 1
-    if (results.multiHandLandmarks[0] && indexs > phalangeIndexs){
+    if (results.multiHandLandmarks[0] && indexs > phalangeIndexs || results.multiHandLandmarks[0] && !results.multiHandLandmarks[1]){
         let main1 = results.multiHandLandmarks[0];
         chiffre1 = 0;
 
@@ -256,7 +256,7 @@ function onResults(results) {
 
 
     //Main 2 (+ total)
-    if (results.multiHandLandmarks[1]  && indexs > phalangeIndexs){
+    if (results.multiHandLandmarks[1] && indexs > phalangeIndexs){
         let main2 = results.multiHandLandmarks[1];
         chiffre2 = 0;
 
@@ -497,19 +497,19 @@ function onResults(results) {
                 derSymboleIndexsVerdict += Number(derSymboleIndexs[i]);
             }
             if (derSymboleIndexsVerdict > 0.90*iterations){
-                console.log("Operande1 : "+operande1);
-                console.log("Operande2 : "+operande2);
+
+
 
                 // => ici enregistrer la valeur precedente de main 1 ou total et entre dans variable lien autre fonctionnalité, universelle => permet d'entrer une valeur
                 if (operande1 == 0){
                     operande1 = totalTime;
-                    derSymboleIndexsVerdict = 0;
-                    console.log(operande1);
-                }
-                else{
+                    symboleIndexs = [];
+                }else{
                     operande2 = totalTime;
-                    derSymboleIndexsVerdict = 0;
+                    symboleIndexs = [];
                 }
+                console.log("Operande1 : "+operande1);
+                console.log("Operande2 : "+operande2);
             }
         }
 
