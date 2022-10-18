@@ -1,7 +1,4 @@
-const fluxVideo = document.getElementsByClassName('input_video')[0];
-fluxVideo.msHorizontalMirror = true;
-const videoElement = fluxVideo;
-// const videoElement = document.getElementsByClassName('input_video')[0];
+const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
 
@@ -38,15 +35,15 @@ function onResults(results) {
     canvasCtx.save();
 //   canvasCtx.scale(-1,-1);
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-    canvasCtx.drawImage(
-        results.image, 0, 0, canvasElement.width, canvasElement.height);
-    //   console.log(results.multiHandLandmarks);
+    // Inclue le flux video au canva---------------------------------------
+    // canvasCtx.drawImage(
+    //     results.image, 0, 0, canvasElement.width, canvasElement.height);
 
     if (results.multiHandLandmarks) {
     for (const landmarks of results.multiHandLandmarks) {
         drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
                         {color: '#00FF00', lineWidth: 5});
-        drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 1});
+        drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 0.5});
     }
     }
     let chiffre1;
