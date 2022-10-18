@@ -461,7 +461,7 @@ function onResults(results) {
 
     //Total
     //Timing du resultat total main
-    if (mainM2 > 0 && mainM2 <=10 && mainM1 > 0 && mainM1 <=10 ){
+    if (mainM2 > 0 && mainM2 <=10 && mainM1 > 0 && mainM1 <=10 && results.multiHandLandmarks[1]){
         totalTime = mainM1 + mainM2;
     }
     else if (mainM1 > 0 && mainM1 <=10){
