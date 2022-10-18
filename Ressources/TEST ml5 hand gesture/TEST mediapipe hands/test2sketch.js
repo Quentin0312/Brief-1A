@@ -25,6 +25,11 @@ let phalangeIndexs = 0;
 
 let operande1 = 0;
 let operande2 = 0;
+let produit;
+
+let derOperande1;
+let derOperande2;
+let derProduit;
 
 function onResults(results) {
     canvasCtx.save();
@@ -463,20 +468,6 @@ function onResults(results) {
         totalTime = mainM1;
     }
 
-    //Affichage à l'écran
-    document.getElementById("resultatTotalTime").innerHTML = "Total => " +totalTime;
-    if (mainM1>0 && mainM1 <= 5){
-        document.getElementById("resultatM1Time").innerHTML = "Main 1 : "+mainM1 ;
-    }
-    if (mainM2>0 && mainM2 <= 5){
-        document.getElementById("resultatM2Time").innerHTML = "Main 2 : "+mainM2;
-    }
-
-
-
-
-
-
     //Fonctionnalite Multiplication - Detecion du contact index et time
     if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
 
@@ -503,9 +494,11 @@ function onResults(results) {
                 // => ici enregistrer la valeur precedente de main 1 ou total et entre dans variable lien autre fonctionnalité, universelle => permet d'entrer une valeur
                 if (operande1 == 0){
                     operande1 = totalTime;
+                    derOperande1 = totalTime;
                     symboleIndexs = [];
                 }else{
                     operande2 = totalTime;
+                    derOperande2 = totalTime;
                     symboleIndexs = [];
                 }
                 console.log("Operande1 : "+operande1);
@@ -516,10 +509,24 @@ function onResults(results) {
     }
 
     //Fonctionnalite Multiplication - Coeur
+    if (operande1>0 && operande2>0){
+        produit = operande1 * operande2;
+        derProduit = derOperande1 * derOperande2;
+        console.log(produit);
+        operande1 = 0;
+        operande2 = 0;
+    }
+
+    //Affichage à l'écran
+    document.getElementById("resultatTotalTime").innerHTML = "Total => " +totalTime;
+    if (mainM1>0 && mainM1 <= 5){
+        document.getElementById("resultatM1Time").innerHTML = "Main 1 : "+mainM1 ;
+    }
+    if (mainM2>0 && mainM2 <= 5){
+        document.getElementById("resultatM2Time").innerHTML = "Main 2 : "+mainM2;
+    }
+    document.getElementById("multiplication").innerHTML = derOperande1 + " X " + derOperande2 + " = " + derProduit; 
     
-
-
-
 
     canvasCtx.restore();
 }
