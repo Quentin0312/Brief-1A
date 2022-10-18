@@ -6,6 +6,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="holistic.css">
   <!-- <script src="holistic.js"></script> -->
 
 </head>
@@ -18,6 +19,9 @@
         const videoElement = document.getElementsByClassName('input_video')[0];
         const canvasElement = document.getElementsByClassName('output_canvas')[0];
         const canvasCtx = canvasElement.getContext('2d');
+
+        var img = new Image();
+        img.src = "images/beach.jpg";
         
         function onResults(results) {
           canvasCtx.save();
@@ -26,21 +30,24 @@
                               canvasElement.width, canvasElement.height);
         
           // Only overwrite existing pixels.
-          canvasCtx.globalCompositeOperation = 'source-out';
-          canvasCtx.fillStyle = '#00FF00';
-          canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+          canvasCtx.globalCompositeOperation = 'source-in';
+        //   canvasCtx.fillStyle = '#00FF00';
+        //   canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+        canvasCtx.drawImage(
+              results.image, 0, 0, canvasElement.width, canvasElement.height);
         
           // Only overwrite missing pixels.
           canvasCtx.globalCompositeOperation = 'destination-atop';
+        //   canvasCtx.filter = "blur(10px)";
           // flux video
           canvasCtx.drawImage(
-              results.image, 0, 0, canvasElement.width, canvasElement.height);
+              img, 0, 0, canvasElement.width, canvasElement.height);
         
           canvasCtx.globalCompositeOperation = 'source-over';
-          drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
-                         {color: '#00FF00', lineWidth: 4}); //body batons
-          drawLandmarks(canvasCtx, results.poseLandmarks,
-                        {color: '#FF0000', lineWidth: 2}); //body points
+        //   drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
+        //                  {color: '#00FF00', lineWidth: 4}); //body batons
+        //   drawLandmarks(canvasCtx, results.poseLandmarks,
+        //                 {color: '#FF0000', lineWidth: 2}); //body points
         //   drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
         //                  {color: '#C0C0C070', lineWidth: 1}); //visage mesh
           drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS,
