@@ -13,7 +13,7 @@ let trois = [];
 let quatre = [];
 let cinq = [];
 
-let iterations = 100;
+let iterations = 50;
 
 let mainM1;
 let mainM2;
@@ -129,14 +129,14 @@ function onResults(results) {
         }
 
         //Affichage du resultat main 1
-        console.log("chiffre 1:",chiffre1);
+        // console.log("chiffre 1:",chiffre1);
         let resultatAffiche1 = document.getElementById("resultatAffiche1").innerHTML = "Live main 1 : " +chiffre1;
         //Timing du resultat main 1
         resultatM1.push(chiffre1);
-        console.log("M1",resultatM1);
+        // console.log("M1",resultatM1);
         if (resultatM1.length >= iterations){
             let m120der = resultatM1.slice(-iterations);
-            console.log("-------------",m120der);
+            // console.log("-------------",m120der);
             for (let i = 0;i < iterations; i++){
 
                 if (m120der[i]==0){
@@ -183,7 +183,7 @@ function onResults(results) {
             trois = trois.slice(-iterations);
             quatre = quatre.slice(-iterations);
             cinq = cinq.slice(-iterations);
-            console.log("5=>",cinq);
+            // console.log("5=>",cinq);
 
             let sommeCinq = 0;
             let sommeUn = 0;
@@ -328,15 +328,15 @@ function onResults(results) {
         }
 
         //Affichage resultat main 2
-        console.log("chiffre 2:", chiffre2);
+        // console.log("chiffre 2:", chiffre2);
         let resultatAffiche2 = document.getElementById("resultatAffiche2").innerHTML = "Live main 2 : "+chiffre2;
 
         //Timing du resultat main 2
         resultatM2.push(chiffre2);
-        console.log("M2",resultatM2);
+        // console.log("M2",resultatM2);
         if (resultatM2.length >= iterations){
             let m120der = resultatM2.slice(-iterations);
-            console.log("-------------",m120der);
+            // console.log("-------------",m120der);
             for (let i = 0;i < iterations; i++){
 
                 if (m120der[i]==0){
@@ -383,7 +383,7 @@ function onResults(results) {
             trois = trois.slice(-iterations);
             quatre = quatre.slice(-iterations);
             cinq = cinq.slice(-iterations);
-            console.log("5=>",cinq);
+            // console.log("5=>",cinq);
 
             let sommeCinq = 0;
             let sommeUn = 0;
@@ -453,7 +453,26 @@ function onResults(results) {
 
     }
 
-    
+    //Fonctionnalite Multiplication
+    if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
+        let hand1 = results.multiHandLandmarks[0];
+        let hand2 = results.multiHandLandmarks[1];
+
+        let indexs = (hand1[8].x) - (hand2[8].x);
+        indexs = Math.abs(indexs);
+
+        let phalangeIndexs = (hand1[8].x)-(hand1[7].x);
+        phalangeIndexs = Math.abs(phalangeIndexs);
+        if (indexs < phalangeIndexs){
+            console.log("Contact!!!!!!!!!!");
+        }
+        else{
+            console.log("Pas contact");
+        }
+
+    }
+
+
 
     canvasCtx.restore();
 }
