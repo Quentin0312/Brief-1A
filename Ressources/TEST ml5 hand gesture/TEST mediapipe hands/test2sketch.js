@@ -13,7 +13,7 @@ let trois = [];
 let quatre = [];
 let cinq = [];
 
-let iterations = 20;
+let iterations = 100;
 
 let mainM1;
 let mainM2;
@@ -237,7 +237,7 @@ function onResults(results) {
         }
     }
 
-    //Main 2
+    //Main 2 + total
     if (results.multiHandLandmarks[1]){
         let main2 = results.multiHandLandmarks[1];
         chiffre2 = 0;
@@ -446,13 +446,14 @@ function onResults(results) {
             document.getElementById("resultatTotalTime").innerHTML = totalTime;
         }
         else{
-            document.getElementById("resultatTotalTime").innerHTML = "Pas compris";
+            document.getElementById("resultatTotalTime").innerHTML = "Pas compris ";
         }
 
 
 
     }
 
+    
 
     canvasCtx.restore();
 }
