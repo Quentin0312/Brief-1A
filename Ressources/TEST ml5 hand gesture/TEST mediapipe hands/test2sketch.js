@@ -20,6 +20,8 @@ let mainM2;
 let totalTime;
 
 let symboleIndexs = [];
+let indexs = 0;
+let phalangeIndexs = 0;
 
 let operande1 = 0;
 let operande2 = 0;
@@ -43,9 +45,22 @@ function onResults(results) {
     let chiffre2;
     let chiffreTotal;
 
+    //Détermine le symbole contact indexs
+    if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
+
+        let hand1 = results.multiHandLandmarks[0];
+        let hand2 = results.multiHandLandmarks[1];
+
+        indexs = (hand1[8].x) - (hand2[8].x);
+        indexs = Math.abs(indexs);
+
+        phalangeIndexs = (hand1[8].x)-(hand1[7].x);
+        phalangeIndexs = Math.abs(phalangeIndexs);
+    }
+
 
     //Main 1
-    if (results.multiHandLandmarks[0]){
+    if (results.multiHandLandmarks[0] && indexs > phalangeIndexs){
         let main1 = results.multiHandLandmarks[0];
         chiffre1 = 0;
 
@@ -241,7 +256,7 @@ function onResults(results) {
 
 
     //Main 2 (+ total)
-    if (results.multiHandLandmarks[1]){
+    if (results.multiHandLandmarks[1]  && indexs > phalangeIndexs){
         let main2 = results.multiHandLandmarks[1];
         chiffre2 = 0;
 
@@ -457,33 +472,13 @@ function onResults(results) {
         document.getElementById("resultatM2Time").innerHTML = "Main 2 : "+mainM2;
     }
 
-    if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
-        //Détermine le symbole contact indexs
-        let hand1 = results.multiHandLandmarks[0];
-        let hand2 = results.multiHandLandmarks[1];
 
-        let indexs = (hand1[8].x) - (hand2[8].x);
-        indexs = Math.abs(indexs);
-
-        let phalangeIndexs = (hand1[8].x)-(hand1[7].x);
-        phalangeIndexs = Math.abs(phalangeIndexs);
-    
-    }
 
 
 
 
     //Fonctionnalite Multiplication - Detecion du contact index et time
     if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
-        //Détermine le symbole contact indexs
-        let hand1 = results.multiHandLandmarks[0];
-        let hand2 = results.multiHandLandmarks[1];
-
-        let indexs = (hand1[8].x) - (hand2[8].x);
-        indexs = Math.abs(indexs);
-
-        let phalangeIndexs = (hand1[8].x)-(hand1[7].x);
-        phalangeIndexs = Math.abs(phalangeIndexs);
 
         if (indexs < phalangeIndexs){
             symboleIndexs.push("1"); //1 Correspond à contact
