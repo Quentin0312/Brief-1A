@@ -17,6 +17,7 @@ let iterations = 50; //itérations entré valeurs chiffre mais aussi symbole ind
 
 let mainM1;
 let mainM2;
+let totalTime;
 
 let symboleIndexs = [];
 
@@ -45,7 +46,7 @@ function onResults(results) {
         let main1 = results.multiHandLandmarks[0];
         chiffre1 = 0;
 
-        //Pos main
+        //Pos main et entrée dans chiffre 1, valeur live
         if(main1[2].y > main1[9].y){ //Quand mains "à l'endroit"
             // console.log("actuel");
 
@@ -131,11 +132,12 @@ function onResults(results) {
         }
 
         //Affichage du resultat main 1
-        // console.log("chiffre 1:",chiffre1);
-        let resultatAffiche1 = document.getElementById("resultatAffiche1").innerHTML = "Live main 1 : " +chiffre1;
         //Timing du resultat main 1
         resultatM1.push(chiffre1);
-        // console.log("M1",resultatM1);
+        if (!results.multiHandLandmarks[1]){
+            resultatM2.push(0);
+        }
+
         if (resultatM1.length >= iterations){
             let m120der = resultatM1.slice(-iterations);
             // console.log("-------------",m120der);
@@ -212,34 +214,29 @@ function onResults(results) {
             let pourcentage= 0.75;
 
             if (sommeUn > 1*iterations*pourcentage){
-                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 1";
                 mainM1 = 1;
             }
             else if (sommeDeux > 2*iterations*pourcentage){
-                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 2";
                 mainM1 = 2;
             }
             else if (sommeTrois > 3*iterations*pourcentage){
-                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 3";
                 mainM1 = 3;
             }
             else if (sommeQuatre > 4*iterations*pourcentage){
-                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 4";
                 mainM1 = 4;
             }
             else if (sommeCinq > 5*iterations*pourcentage){
-                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 5";
                 mainM1 = 5;
             }
             else{
-                document.getElementById("resultatM1Time").innerHTML = "Main 1=> Pas compris";
                 mainM1 = "erreur";
             }
 
         }
     }
 
-    //Main 2 + total
+
+    //Main 2 (+ total)
     if (results.multiHandLandmarks[1]){
         let main2 = results.multiHandLandmarks[1];
         chiffre2 = 0;
@@ -331,7 +328,7 @@ function onResults(results) {
 
         //Affichage resultat main 2
         // console.log("chiffre 2:", chiffre2);
-        let resultatAffiche2 = document.getElementById("resultatAffiche2").innerHTML = "Live main 2 : "+chiffre2;
+        let resultatAffiche2 = document.getElementById("resultatAffiche2").innerHTML = "Live main 2 : " +chiffre2;
 
         //Timing du resultat main 2
         resultatM2.push(chiffre2);
@@ -412,27 +409,21 @@ function onResults(results) {
             let pourcentage= 0.75;
 
             if (sommeUn > 1*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 1";
                 mainM2 = 1;
             }
             else if (sommeDeux > 2*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 2";
                 mainM2 = 2;
             }
             else if (sommeTrois > 3*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 3";
                 mainM2 = 3;
             }
             else if (sommeQuatre > 4*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 4";
                 mainM2 = 4;
             }
             else if (sommeCinq > 5*iterations*pourcentage){
-                document.getElementById("resultatM2Time").innerHTML = "Main 2=> 5";
                 mainM2 = 5;
             }
             else{
-                document.getElementById("resultatM2Time").innerHTML = "Main 2=> Pas compris";
                 mainM2 = "erreur";
             }
 
@@ -440,20 +431,31 @@ function onResults(results) {
 
         //Affichage resultat total 
         chiffreTotal = chiffre1 + chiffre2;
-        let resultatAfficheTotal = document.getElementById("resultatAfficheTotal").innerHTML = "Live total : "+chiffreTotal;
-
-        //Timing du resultat total main
-        let totalTime = mainM1 + mainM2;
-        if (totalTime >=1 && totalTime <=10){
-            document.getElementById("resultatTotalTime").innerHTML = totalTime;
-        }
-        else{
-            document.getElementById("resultatTotalTime").innerHTML = "Pas compris ";
-        }
-
-
+        let resultatAfficheTotal = document.getElementById("resultatAfficheTotal").innerHTML = "Live total : " +chiffreTotal;
 
     }
+
+    //Total
+    //Timing du resultat total main
+    if (mainM2 > 0 && mainM2 <=10){
+        totalTime = mainM1 + mainM2;
+    }
+    else{
+        totalTime = mainM1;
+    }
+
+    //Affichage à l'écran
+    document.getElementById("resultatTotalTime").innerHTML = "Total => " +totalTime;
+    if (mainM1>0 && mainM1 <= 5){
+        document.getElementById("resultatM1Time").innerHTML = "Main 1 : "+mainM1 ;
+    }
+    if (mainM2>0 && mainM2 <= 5){
+        document.getElementById("resultatM2Time").innerHTML = "Main 2 : "+mainM2;
+    }
+
+
+
+
 
     //Fonctionnalite Multiplication - Detecion du contact index et time
     if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
