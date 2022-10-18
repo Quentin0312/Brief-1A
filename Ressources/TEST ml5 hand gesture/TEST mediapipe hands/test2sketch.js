@@ -13,6 +13,7 @@ let trois = [];
 let quatre = [];
 let cinq = [];
 
+let iterations = 20;
 
 function onResults(results) {
     canvasCtx.save();
@@ -130,10 +131,10 @@ function onResults(results) {
         //Liste contenant les chiffres enregistré
         resultatM1.push(chiffre1);
         console.log("M1",resultatM1);
-        if (resultatM1.length >= 20){
-            let m120der = resultatM1.slice(-20);
+        if (resultatM1.length >= iterations){
+            let m120der = resultatM1.slice(-iterations);
             console.log("-------------",m120der);
-            for (let i = 0;i < 20; i++){
+            for (let i = 0;i < iterations; i++){
 
                 if (m120der[i]==0){
                     zero.push(0);
@@ -173,16 +174,56 @@ function onResults(results) {
                 }
 
             }
-            zero = zero.slice(-20);
-            un = un.slice(-20);
-            deux = deux.slice(-20);
-            trois = trois.slice(-20);
-            quatre = quatre.slice(-20);
-            cinq = cinq.slice(-20);
+            zero = zero.slice(-iterations);
+            un = un.slice(-iterations);
+            deux = deux.slice(-iterations);
+            trois = trois.slice(-iterations);
+            quatre = quatre.slice(-iterations);
+            cinq = cinq.slice(-iterations);
             console.log("5=>",cinq);
 
-            
+            let sommeCinq = 0;
+            let sommeUn = 0;
+            let sommeDeux = 0;
+            let sommeTrois = 0;
+            let sommeQuatre = 0;
 
+            for (let i = 0;i < iterations; i++){
+                sommeCinq += cinq[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeUn += un[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeDeux += deux[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeTrois += trois[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeQuatre += quatre[i];
+            }
+
+            let pourcentage= 0.75;
+
+            if (sommeUn > 1*iterations*pourcentage){
+                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 1";
+            }
+            else if (sommeDeux > 2*iterations*pourcentage){
+                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 2";
+            }
+            else if (sommeTrois > 3*iterations*pourcentage){
+                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 3";
+            }
+            else if (sommeQuatre > 4*iterations*pourcentage){
+                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 4";
+            }
+            else if (sommeCinq > 5*iterations*pourcentage){
+                document.getElementById("resultatM1Time").innerHTML = "Main 1=> 5";
+            }
+            else{
+                document.getElementById("resultatM1Time").innerHTML = "Main 1=> Pas compris";
+            }
 
         }
     }
