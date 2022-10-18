@@ -134,6 +134,7 @@ function onResults(results) {
         //Affichage du resultat main 1
         //Timing du resultat main 1
         resultatM1.push(chiffre1);
+        document.getElementById("resultatAffiche1").innerHTML = "Live main 1 : "+chiffre1;
         if (!results.multiHandLandmarks[1]){
             resultatM2.push(0);
         }
@@ -229,7 +230,7 @@ function onResults(results) {
                 mainM1 = 5;
             }
             else{
-                mainM1 = "erreur";
+                mainM1 = "erreurM1";
             }
 
         }
@@ -437,10 +438,10 @@ function onResults(results) {
 
     //Total
     //Timing du resultat total main
-    if (mainM2 > 0 && mainM2 <=10){
+    if (mainM2 > 0 && mainM2 <=10 && mainM1 > 0 && mainM1 <=10 ){
         totalTime = mainM1 + mainM2;
     }
-    else{
+    else if (mainM1 > 0 && mainM1 <=10){
         totalTime = mainM1;
     }
 
@@ -491,6 +492,9 @@ function onResults(results) {
         }
 
     }
+
+    //Fonctionnalite Multiplication - Coeur
+
 
 
 
