@@ -1,4 +1,7 @@
-const videoElement = document.getElementsByClassName('input_video')[0];
+const fluxVideo = document.getElementsByClassName('input_video')[0];
+fluxVideo.msHorizontalMirror = true;
+const videoElement = fluxVideo;
+// const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
 
