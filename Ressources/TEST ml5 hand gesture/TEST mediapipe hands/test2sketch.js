@@ -490,20 +490,25 @@ function onResults(results) {
         }
 
         if (symboleIndexs.length >= iterations){
+
             let derSymboleIndexs = symboleIndexs.slice(-iterations);
             let derSymboleIndexsVerdict = 0;
             for (let i = 0; i < iterations; i++){
                 derSymboleIndexsVerdict += Number(derSymboleIndexs[i]);
             }
             if (derSymboleIndexsVerdict > 0.90*iterations){
-                console.log("onyest");
+                console.log("Operande1 : "+operande1);
+                console.log("Operande2 : "+operande2);
+
                 // => ici enregistrer la valeur precedente de main 1 ou total et entre dans variable lien autre fonctionnalité, universelle => permet d'entrer une valeur
-                if (operande1 = 0){
+                if (operande1 == 0){
                     operande1 = totalTime;
                     derSymboleIndexsVerdict = 0;
+                    console.log(operande1);
                 }
                 else{
                     operande2 = totalTime;
+                    derSymboleIndexsVerdict = 0;
                 }
             }
         }
