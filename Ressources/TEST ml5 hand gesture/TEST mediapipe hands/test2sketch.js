@@ -127,8 +127,8 @@ function onResults(results) {
 
         //Affichage du resultat main 1
         console.log("chiffre 1:",chiffre1);
-        let resultatAffiche1 = document.getElementById("resultatAffiche1").innerHTML = chiffre1;
-        //Liste contenant les chiffres enregistré
+        let resultatAffiche1 = document.getElementById("resultatAffiche1").innerHTML = "Live main 1 : " +chiffre1;
+        //Timing du resultat main 1
         resultatM1.push(chiffre1);
         console.log("M1",resultatM1);
         if (resultatM1.length >= iterations){
@@ -230,107 +230,203 @@ function onResults(results) {
 
     //Main 2
     if (results.multiHandLandmarks[1]){
-    let main2 = results.multiHandLandmarks[1];
-    chiffre2 = 0;
+        let main2 = results.multiHandLandmarks[1];
+        chiffre2 = 0;
 
-    //Pos main
-    if(main2[2].y > main2[9].y){ //Quand mains "à l'endroit"
-        // console.log("actuel");
+        //Pos main
+        if(main2[2].y > main2[9].y){ //Quand mains "à l'endroit"
+            // console.log("actuel");
 
-        if (main2[8].y < main2[7].y && main2[6].y < main2[5].y){
-        chiffre2 += 1;
-        // console.log("index");
+            if (main2[8].y < main2[7].y && main2[6].y < main2[5].y){
+            chiffre2 += 1;
+            // console.log("index");
+            }
+
+            if (main2[12].y < main2[11].y && main2[10].y < main2[9].y){
+                chiffre2 += 1;
+            //   console.log("majeur");
+            }
+
+            if (main2[16].y < main2[15].y && main2[14].y < main2[13].y){
+                chiffre2 += 1;
+            //   console.log("annulaire");
+            }
+
+            if (main2[20].y < main2[19].y && main2[18].y < main2[17].y){
+                chiffre2 += 1;
+            //   console.log("auriculaire");
+            }
+            //Pouce à gauche de la mains
+            if((main2[4].x > main2[3].x) &&(main2[20].x < main2[4].x) && (main2[8].x - main2[0].x)-(main2[4].x - main2[0].x)<0){
+            //   console.log("pouce1");
+                chiffre2 += 1;
+            }
+            //Pouce à gauche de la mains
+            if((main2[4].x < main2[3].x) &&(main2[20].x > main2[4].x) && (main2[8].x - main2[0].x)-(main2[4].x - main2[0].x)>0){
+            //   console.log("pouce2");
+                chiffre2 += 1;
+            }
+
+        }
+        else if(true){ // Quand mains "allongé"
+        // console.log("et ouis")
+
+            if(main2[4].y < main2[3].y){
+                // console.log("pouce bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à gauche de la mains
+            if( (main2[7].x > main2[0].x) && (main2[8].x > main2[7].x)){
+                // console.log("index bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à droite de la mains
+            if( (main2[7].x < main2[0].x) && (main2[8].x < main2[7].x)){
+                // console.log("index bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à gauche de la mains
+            if( (main2[11].x > main2[0].x) && (main2[12].x > main2[11].x)){
+                // console.log("majeur bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à droite de la mains
+            if( (main2[11].x < main2[0].x) && (main2[12].x < main2[11].x)){
+                // console.log("majeur bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à gauche de la mains
+            if( (main2[15].x > main2[0].x) && (main2[16].x > main2[15].x)){
+                // console.log("annulaire bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à droite de la mains
+            if( (main2[15].x < main2[0].x) && (main2[16].x < main2[15].x)){
+                // console.log("annulaire bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à gauche de la mains
+            if( (main2[19].x > main2[0].x) && (main2[20].x > main2[19].x)){
+                // console.log("auriculaire bleu");
+                chiffre2 += 1;
+            }
+            //Doigt à droite de la mains
+            if( (main2[19].x < main2[0].x) && (main2[20].x < main2[19].x)){
+                // console.log("auriculaire bleu");
+                chiffre2 += 1;
+            }
+
         }
 
-        if (main2[12].y < main2[11].y && main2[10].y < main2[9].y){
-            chiffre2 += 1;
-        //   console.log("majeur");
+        //Affichage resultat main 2
+        console.log("chiffre 2:", chiffre2);
+        let resultatAffiche2 = document.getElementById("resultatAffiche2").innerHTML = "Live main 2 : "+chiffre2;
+
+        //Timing du resultat main 2
+        resultatM2.push(chiffre2);
+        console.log("M2",resultatM2);
+        if (resultatM2.length >= iterations){
+            let m120der = resultatM2.slice(-iterations);
+            console.log("-------------",m120der);
+            for (let i = 0;i < iterations; i++){
+
+                if (m120der[i]==0){
+                    zero.push(0);
+                }
+                else{
+                    zero.push(0);
+                }
+                if (m120der[i]==1){
+                    un.push(1);
+                }
+                else{
+                    un.push(0);
+                }
+                if (m120der[i]==2){
+                    deux.push(2);
+                }
+                else{
+                    deux.push(0);
+                }
+                if (m120der[i]==3){
+                    trois.push(3);
+                }
+                else{
+                    trois.push(0);
+                }
+                if (m120der[i]==4){
+                    quatre.push(4);
+                }
+                else{
+                    quatre.push(0);
+                }
+                if (m120der[i]==5){
+                    cinq.push(5);
+                }
+                else{
+                    cinq.push(0);
+                }
+
+            }
+            zero = zero.slice(-iterations);
+            un = un.slice(-iterations);
+            deux = deux.slice(-iterations);
+            trois = trois.slice(-iterations);
+            quatre = quatre.slice(-iterations);
+            cinq = cinq.slice(-iterations);
+            console.log("5=>",cinq);
+
+            let sommeCinq = 0;
+            let sommeUn = 0;
+            let sommeDeux = 0;
+            let sommeTrois = 0;
+            let sommeQuatre = 0;
+
+            for (let i = 0;i < iterations; i++){
+                sommeCinq += cinq[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeUn += un[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeDeux += deux[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeTrois += trois[i];
+            }
+            for (let i = 0;i < iterations; i++){
+                sommeQuatre += quatre[i];
+            }
+
+            let pourcentage= 0.75;
+
+            if (sommeUn > 1*iterations*pourcentage){
+                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 1";
+            }
+            else if (sommeDeux > 2*iterations*pourcentage){
+                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 2";
+            }
+            else if (sommeTrois > 3*iterations*pourcentage){
+                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 3";
+            }
+            else if (sommeQuatre > 4*iterations*pourcentage){
+                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 4";
+            }
+            else if (sommeCinq > 5*iterations*pourcentage){
+                document.getElementById("resultatM2Time").innerHTML = "Main 1=> 5";
+            }
+            else{
+                document.getElementById("resultatM2Time").innerHTML = "Main 1=> Pas compris";
+            }
+
         }
 
-        if (main2[16].y < main2[15].y && main2[14].y < main2[13].y){
-            chiffre2 += 1;
-        //   console.log("annulaire");
-        }
+        //Affichage resultat total 
+        chiffreTotal = chiffre1 + chiffre2;
+        let resultatAfficheTotal = document.getElementById("resultatAfficheTotal").innerHTML = "Live total : "+chiffreTotal;
 
-        if (main2[20].y < main2[19].y && main2[18].y < main2[17].y){
-            chiffre2 += 1;
-        //   console.log("auriculaire");
-        }
-        //Pouce à gauche de la mains
-        if((main2[4].x > main2[3].x) &&(main2[20].x < main2[4].x) && (main2[8].x - main2[0].x)-(main2[4].x - main2[0].x)<0){
-        //   console.log("pouce1");
-            chiffre2 += 1;
-        }
-        //Pouce à gauche de la mains
-        if((main2[4].x < main2[3].x) &&(main2[20].x > main2[4].x) && (main2[8].x - main2[0].x)-(main2[4].x - main2[0].x)>0){
-        //   console.log("pouce2");
-            chiffre2 += 1;
-        }
-
-    }
-    else if(true){ // Quand mains "allongé"
-    // console.log("et ouis")
-
-        if(main2[4].y < main2[3].y){
-            // console.log("pouce bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à gauche de la mains
-        if( (main2[7].x > main2[0].x) && (main2[8].x > main2[7].x)){
-            // console.log("index bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à droite de la mains
-        if( (main2[7].x < main2[0].x) && (main2[8].x < main2[7].x)){
-            // console.log("index bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à gauche de la mains
-        if( (main2[11].x > main2[0].x) && (main2[12].x > main2[11].x)){
-            // console.log("majeur bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à droite de la mains
-        if( (main2[11].x < main2[0].x) && (main2[12].x < main2[11].x)){
-            // console.log("majeur bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à gauche de la mains
-        if( (main2[15].x > main2[0].x) && (main2[16].x > main2[15].x)){
-            // console.log("annulaire bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à droite de la mains
-        if( (main2[15].x < main2[0].x) && (main2[16].x < main2[15].x)){
-            // console.log("annulaire bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à gauche de la mains
-        if( (main2[19].x > main2[0].x) && (main2[20].x > main2[19].x)){
-            // console.log("auriculaire bleu");
-            chiffre2 += 1;
-        }
-        //Doigt à droite de la mains
-        if( (main2[19].x < main2[0].x) && (main2[20].x < main2[19].x)){
-            // console.log("auriculaire bleu");
-            chiffre2 += 1;
-        }
-
-    }
-
-    //Affichage resultat main 2
-    console.log("chiffre 2:", chiffre2);
-    let resultatAffiche2 = document.getElementById("resultatAffiche2").innerHTML = chiffre2;
-
-    resultatM2.push(chiffre2);
-    console.log("M2",resultatM2);
-
-    //Affichage resultat total 
-    chiffreTotal = chiffre1 + chiffre2;
-    let resultatAfficheTotal = document.getElementById("resultatAfficheTotal").innerHTML = chiffreTotal;
-
-    resultatTotal.push(chiffreTotal);
-    console.log("Total:",resultatTotal);
+        resultatTotal.push(chiffreTotal);
+        console.log("Total:",resultatTotal);
     }
 
 
