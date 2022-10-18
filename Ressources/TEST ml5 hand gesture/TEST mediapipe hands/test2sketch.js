@@ -13,10 +13,12 @@ let trois = [];
 let quatre = [];
 let cinq = [];
 
-let iterations = 50;
+let iterations = 50; //itérations entré valeurs chiffre mais aussi symbole indexs contact
 
 let mainM1;
 let mainM2;
+
+let symboleIndexs = [];
 
 function onResults(results) {
     canvasCtx.save();
@@ -453,8 +455,9 @@ function onResults(results) {
 
     }
 
-    //Fonctionnalite Multiplication
+    //Fonctionnalite Multiplication - Detecion du contact index et time
     if (results.multiHandLandmarks[0] && results.multiHandLandmarks[1]){
+        //Détermine le symbole contact indexs
         let hand1 = results.multiHandLandmarks[0];
         let hand2 = results.multiHandLandmarks[1];
 
@@ -463,11 +466,26 @@ function onResults(results) {
 
         let phalangeIndexs = (hand1[8].x)-(hand1[7].x);
         phalangeIndexs = Math.abs(phalangeIndexs);
+
         if (indexs < phalangeIndexs){
+            symboleIndexs.push("1"); //1 Correspond à contact
             console.log("Contact!!!!!!!!!!");
         }
-        else{
+        else if(indexs > phalangeIndexs){
+            symboleIndexs.push("0"); //0 Correspond à pas de contact
             console.log("Pas contact");
+        }
+
+        if (symboleIndexs.length >= iterations){
+            let derSymboleIndexs = symboleIndexs.slice(-iterations);
+            let derSymboleIndexsVerdict = 0;
+            for (let i = 0; i < iterations; i++){
+                derSymboleIndexsVerdict += Number(derSymboleIndexs[i]);
+            }
+            if (derSymboleIndexsVerdict > 0.90*iterations){
+                console.log("onyest");
+                // => ici enregistrer la valeur precedente de main 1 ou total et entre dans variable lien autre fonctionnalité, universelle => permet d'entrer une valeur
+            }
         }
 
     }
