@@ -59,6 +59,10 @@
           drawLandmarks(canvasCtx, results.rightHandLandmarks,
                         {color: '#FF0000', lineWidth: 2}); //points main droite
           canvasCtx.restore();
+          if(results.rightHandLandmarks){
+            console.log("index main droite : "+results.rightHandLandmarks[8].x);
+          }
+
 
         }
 
@@ -67,7 +71,7 @@
           return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
         }});
         holistic.setOptions({
-          modelComplexity: 1,
+          modelComplexity: 2,
           smoothLandmarks: true,
           enableSegmentation: true,
           smoothSegmentation: true,
