@@ -532,10 +532,10 @@
         if(mainM2 > 0 && mainM2 <=10 && mainM1 > 0 && mainM1 <=10 && results.rightHandLandmarks && results.leftHandLandmarks){
         totalTime = mainM1 + mainM2;
         }
-        else if(results.rightHandLandmarks){
+        else if(results.rightHandLandmarks && mainM1 > 0 && mainM1 <=10){
           totalTime = mainM1;
         }
-        else if(results.leftHandLandmarks){
+        else if(results.leftHandLandmarks && mainM2 > 0 && mainM2 <=10){
           totalTime = mainM2;
         }
         
