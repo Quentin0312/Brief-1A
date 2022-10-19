@@ -43,8 +43,17 @@
         let mainM2;
         let totalTime;
 
+        let symboleIndexs = [];
         let indexs = 0;
         let phalangeIndexs = 0;
+
+        let operande1 = 0;
+        let operande2 = 0;
+        let produit;
+
+        let derOperande1;
+        let derOperande2;
+        let derProduit;
 
         var img = new Image();
         img.src = "images/beach.jpg";
@@ -306,7 +315,7 @@
             }
         }
         
-        //Main 2 (+ total)
+        //Main 2
         if (results.leftHandLandmarks && indexs > phalangeIndexs || results.leftHandLandmarks && !results.rightHandLandmarks){ // ajouter || results.leftHandLandmarks && !results.rightHandLandmarks
             let main2 = results.leftHandLandmarks;
             chiffre2 = 0;
@@ -514,10 +523,49 @@
           chiffreTotal = chiffre2;
         }
         let resultatAfficheTotal = document.getElementById("resultatAfficheTotal").innerHTML = "Live total : " +chiffreTotal;
+        
+        //Fonctionnalite Multiplication - Detecion du contact index et time
+        if (results.rightHandLandmarks && results.leftHandLandmarks){
 
-      
-      
-      
+          if (indexs < phalangeIndexs){
+              symboleIndexs.push("1"); //1 Correspond à contact
+              console.log("Contact!!!!!!!!!!");
+          }
+          else if(indexs > phalangeIndexs){
+              symboleIndexs.push("0"); //0 Correspond à pas de contact
+              console.log("Pas contact");
+          }
+
+          if (symboleIndexs.length >= iterations){
+
+              let derSymboleIndexs = symboleIndexs.slice(-iterations);
+              let derSymboleIndexsVerdict = 0;
+              for (let i = 0; i < iterations; i++){
+                  derSymboleIndexsVerdict += Number(derSymboleIndexs[i]);
+              }
+              if (derSymboleIndexsVerdict > 0.90*iterations){
+
+
+
+                  // => ici enregistrer la valeur precedente de main 1 ou total et entre dans variable lien autre fonctionnalité, universelle => permet d'entrer une valeur
+                  if (operande1 == 0){
+                      operande1 = totalTime;
+                      derOperande1 = totalTime;
+                      symboleIndexs = [];
+                  }
+                  else{
+                      operande2 = totalTime;
+                      derOperande2 = totalTime;
+                      symboleIndexs = [];
+                  }
+                  console.log("Operande1 : "+operande1);
+                  console.log("Operande2 : "+operande2);
+              }
+          }
+
+        }
+
+        //dessous
         }
 
         
