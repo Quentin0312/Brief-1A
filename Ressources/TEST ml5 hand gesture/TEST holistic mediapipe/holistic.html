@@ -580,6 +580,15 @@
 
         }
 
+        //Fonctionnalite Multiplication - Coeur
+        if (operande1>0 && operande2>0){
+            produit = operande1 * operande2;
+            derProduit = derOperande1 * derOperande2;
+            console.log(produit);
+            operande1 = 0;
+            operande2 = 0;
+        }
+
         //Affichage à l'écran
         document.getElementById("resultatTotalTime").innerHTML = "Total => " +totalTime;
         if (mainM1>0 && mainM1 <= 5){
