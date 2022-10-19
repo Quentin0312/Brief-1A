@@ -18,6 +18,10 @@
     <h1 id="resultatAffiche1"> live main droite</h1>
     <h1 id="resultatAffiche2"> live main gauche</h1>
     <h1 id="resultatAfficheTotal"> live total</h1>
+    <h1 id="resultatM1Time"> M1 time</h1>
+    <h1 id="resultatM2Time"> M2 time</h1>
+    <h1 id="resultatTotalTime"> Total time</h1>
+    <h1 id="multiplication"> Multiplication</h1>
 
     <script type="module">
         const videoElement = document.getElementsByClassName('input_video')[0];
@@ -523,6 +527,17 @@
           chiffreTotal = chiffre2;
         }
         let resultatAfficheTotal = document.getElementById("resultatAfficheTotal").innerHTML = "Live total : " +chiffreTotal;
+
+        //Affichage total time
+        if(mainM2 > 0 && mainM2 <=10 && mainM1 > 0 && mainM1 <=10 && results.rightHandLandmarks && results.leftHandLandmarks){
+        totalTime = mainM1 + mainM2;
+        }
+        else if(results.rightHandLandmarks){
+          totalTime = mainM1;
+        }
+        else if(results.leftHandLandmarks){
+          totalTime = mainM2;
+        }
         
         //Fonctionnalite Multiplication - Detecion du contact index et time
         if (results.rightHandLandmarks && results.leftHandLandmarks){
@@ -565,6 +580,16 @@
 
         }
 
+        //Affichage à l'écran
+        document.getElementById("resultatTotalTime").innerHTML = "Total => " +totalTime;
+        if (mainM1>0 && mainM1 <= 5){
+            document.getElementById("resultatM1Time").innerHTML = "Main 1 : "+mainM1 ;
+        }
+        if (mainM2>0 && mainM2 <= 5){
+            document.getElementById("resultatM2Time").innerHTML = "Main 2 : "+mainM2;
+        }
+        document.getElementById("multiplication").innerHTML = derOperande1 + " X " + derOperande2 + " = " + derProduit; 
+        
         //dessous
         }
 
