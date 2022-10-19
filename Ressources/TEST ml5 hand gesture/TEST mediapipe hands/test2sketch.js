@@ -39,6 +39,7 @@ function onResults(results) {
     // canvasCtx.drawImage(
     //     results.image, 0, 0, canvasElement.width, canvasElement.height);
 
+    //Trace les points et batons
     if (results.multiHandLandmarks) {
     for (const landmarks of results.multiHandLandmarks) {
         drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
