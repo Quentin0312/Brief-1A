@@ -138,28 +138,33 @@
 
 
 
+                    //position main droite
+                    let posMainD = [];
+                    let posEnX = 0;
+                    let posEnY = 0;
 
-                    
                     //Algo menu => sélection avec main droite
                     //detection moyenne points de la main droite
                     if(results.rightHandLandmarks){
-                        let posMainD = [];
-                        let posEnX = 0;
-                        let posEnY = 0;
-                        //moy des x (0 à droite 20 à gauche attention image mirrored)
+
+                        //moy des x (0 à droite 1 à gauche attention image mirrored)
                         for(let i = 0; i<21;i++){
                             posEnX += results.rightHandLandmarks[i].x;
                         }
+                        posMainD[0] = posEnX / 21;
                         // console.log("X =>",results.rightHandLandmarks[8].x);
-                        //moy des y (0 en haut 20 en bas )
+                        //moy des y (0 en haut 1 en bas )
                         for(let i = 0;i<21;i++){
                             posEnY += results.rightHandLandmarks[i].y;
                         }
+                        posMainD[1] = posEnY /21;
+                        // console.log(posMainD);
                         // console.log("Y=>",results.rightHandLandmarks[8].y);
                     }
-
-                    if(results.rightHandLandmarks ){
-
+                    
+                    //detecte si main droite au dessus boutons "multiplication ludique"
+                    if(results.rightHandLandmarks && posMainD[0] >= 0.49 && posMainD[0] <= 0.9 && posMainD[1] <= 0.16 && posMainD[1] >= 0.04){
+                        console.log("tu y es mon pote");
                     }
 
 
