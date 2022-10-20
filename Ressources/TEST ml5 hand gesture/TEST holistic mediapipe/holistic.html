@@ -121,19 +121,11 @@
                 conditionNuage3 =1;
             }
             //Affiche le nuage 4
-            if(conditionNuage1 == 1 && conditionNuage2 ==1 && produit == operande1 * operande2){
+            if(conditionNuage1 == 1 && conditionNuage2 ==1 && produit == derOperande1 * derOperande2){
                 canvasCtx.drawImage(imgNuage,145,0,230,144); //Nuage produit
             
             }
             //Combiner les structures logiques logiques ci-dessus
-
-
-
-
-            
-
-
-
 
           //   drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
           //                  {color: '#00FF00', lineWidth: 4}); //body batons
@@ -184,11 +176,6 @@
                 canvasCtx.fillText('='+produit,900,100); // produit
 
             }
-
-
-
-
-
 
             canvasCtx.restore();
 
