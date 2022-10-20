@@ -47,6 +47,8 @@
 
         //Déclaration variable code hand
 
+        let dessusBouton2 = [];
+
         var imgNuage = new Image();
         imgNuage.src = "images/nuage_1_transp.png";
 
@@ -255,8 +257,15 @@
             canvasCtx.translate(1280, 0);
             // flip context horizontally
             canvasCtx.scale(-1, 1);
+            
+            //bouton menu
+            canvasCtx.fillStyle = 'white';
+            canvasCtx.fillRect(1000, 550, 133, 60);
+            canvasCtx.font = "50px Georgia";
+            canvasCtx.fillStyle = 'orange';
+            canvasCtx.fillText("Menu",1000,600);
 
-
+            canvasCtx.fillStyle = 'blue';
             canvasCtx.font = "100px Georgia";
 
             //Dans nuage 1 afficher le live main
@@ -331,11 +340,59 @@
             }
             canvasCtx.restore();
 
+            //position main droite
+            let posMainD = [];
+            let posEnX = 0;
+            let posEnY = 0;
+
+
           //Intégration du code hand a faire ici-------------------------------------------
 
-          let chiffre1;
-          let chiffre2;
-          let chiffreTotal;
+            let chiffre1;
+            let chiffre2;
+            let chiffreTotal;
+
+            //Algo menu => sélection avec main droite
+            //detection moyenne points de la main droite
+            if(results.rightHandLandmarks){
+
+                //moy des x (0 à droite 1 à gauche attention image mirrored)
+                for(let i = 0; i<21;i++){
+                    posEnX += results.rightHandLandmarks[i].x;
+                }
+                posMainD[0] = posEnX / 21;
+                // console.log("X =>",results.rightHandLandmarks[8].x);
+                //moy des y (0 en haut 1 en bas )
+                for(let i = 0;i<21;i++){
+                    posEnY += results.rightHandLandmarks[i].y;
+                }
+                posMainD[1] = posEnY /21;
+                // console.log(posMainD);
+                // console.log("Y=>",results.rightHandLandmarks[8].y);
+            }
+
+            //detecte si main droite au dessus boutons "menu"
+            if(results.rightHandLandmarks && posMainD[0] >= 0.11 && posMainD[0] <= 0.23 && posMainD[1] <= 0.86 && posMainD[1] >= 0.75){
+                // console.log("tu y es mon pote");
+                dessusBouton2.push("1");
+            }
+            else{
+                dessusBouton2.push("0");
+            }
+            // console.log(dessusBouton1);
+            if(dessusBouton2.length >= iterations){
+                let derDessusBouton2 = dessusBouton2.slice(-iterations);
+                let derDessusBouton2Verdict = 0;
+                for(let i = 0;i<iterations;i++){
+                    derDessusBouton2Verdict += Number(derDessusBouton2[i]);
+                }
+                if(derDessusBouton2Verdict > 0.90 * iterations){
+                    //action
+                    console.log("'click'");
+                    menu = 1;
+                    jeuMultiplication =0;
+                }
+            }
 
 
 
