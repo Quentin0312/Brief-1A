@@ -28,60 +28,104 @@
         const canvasElement = document.getElementsByClassName('output_canvas')[0];
         const canvasCtx = canvasElement.getContext('2d');
 
+        console.log("debut decl des variable");
+
         var img = new Image();
         img.src = "images/beach.jpg";
 
-        //À isoler ! debut --------------------------------------
-        //Déclaration variable code hand
+        //1=> entre dans cette fonctionalité
+        let menu = 1;
+        let jeuMultiplication = 0;
+        let jeuBallons = 0;
 
-        var imgNuage = new Image();
-        imgNuage.src = "images/nuage_1_transp.png";
-        
-        let mainG = [];
-        let sommeMG = 0;
-        let mainD = [];
-        let sommeMD = 0;
+        //Menu
+        if(menu == 1){
 
-        
-        let conditionNuage1 = 0; // 1=> nuage affiché
-        let conditionNuage2 = 0; // "
-        let conditionNuage3 = 0;
-        let conditionNuage4 = 0;
+        }
 
-        let resultatM1 = [];
-        let resultatM2 = [];
-        let resultatTotal = [];
+        //Il faut tou déclarer car cette zone ne boucle pas
+        //F1 - Jeu Multiplication
+        if(jeuMultiplication == 1){
 
-        let zero = [];
-        let un = [];
-        let deux = [];
-        let trois = [];
-        let quatre = [];
-        let cinq = [];
+            //Déclaration variable code hand
 
-        let iterations = 20; //itérations entré valeurs chiffre mais aussi symbole indexs contact
+            var imgNuage = new Image();
+            imgNuage.src = "images/nuage_1_transp.png";
 
-        let mainM1;
-        let mainM2;
-        let totalTime;
+            let mainG = [];
+            let sommeMG = 0;
+            let mainD = [];
+            let sommeMD = 0;
 
-        let symboleIndexs = [];
-        let symboleIndexs2 = []; //permet de reinit les nuages
-        let indexs = 0;
-        let phalangeIndexs = 0;
+            
+            let conditionNuage1 = 0; // 1=> nuage affiché
+            let conditionNuage2 = 0; // "
+            let conditionNuage3 = 0;
+            let conditionNuage4 = 0;
 
-        let operande1 = 0;
-        let operande2 = 0;
-        let produit;
+            let resultatM1 = [];
+            let resultatM2 = [];
+            let resultatTotal = [];
 
-        let derOperande1;
-        let derOperande2;
-        let derProduit;
+            let zero = [];
+            let un = [];
+            let deux = [];
+            let trois = [];
+            let quatre = [];
+            let cinq = [];
 
-        //À isoler ! debut --------------------------------------
-        
+            let iterations = 20; //itérations entré valeurs chiffre mais aussi symbole indexs contact
+
+            let mainM1;
+            let mainM2;
+            let totalTime;
+
+            let symboleIndexs = [];
+            let symboleIndexs2 = []; //permet de reinit les nuages
+            let indexs = 0;
+            let phalangeIndexs = 0;
+
+            let operande1 = 0;
+            let operande2 = 0;
+            let produit;
+
+            let derOperande1;
+            let derOperande2;
+            let derProduit;
+        }
+
+        console.log("fin decl variable");
+
         function onResults(results) {
-          if(results.segmentationMask){
+            //Menu
+            if(menu == 1){
+                if(results.segmentationMask){
+                    canvasCtx.save();
+                    canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+                    canvasCtx.drawImage(results.segmentationMask, 0, 0,canvasElement.width, canvasElement.height);
+
+                    canvasCtx.globalCompositeOperation = 'source-in';
+                    canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+                    canvasCtx.globalCompositeOperation = 'destination-atop';
+                    canvasCtx.drawImage(img, 0, 0, canvasElement.width, canvasElement.height);
+
+                    //Au premier plan
+                    canvasCtx.globalCompositeOperation = 'source-over';
+                    drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS,{color: '#CC0000', lineWidth: 5}); // batons main gauche
+                    drawLandmarks(canvasCtx, results.leftHandLandmarks,{color: '#00FF00', lineWidth: 2});// points main gauche
+                    drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS,{color: '#00CC00', lineWidth: 5}); //batons main droite
+                    drawLandmarks(canvasCtx, results.rightHandLandmarks,{color: '#FF0000', lineWidth: 2}); //points main droite
+                    
+
+
+
+
+                }
+            }
+            //entre dans F1
+            if(jeuMultiplication == 1){
+                if(results.segmentationMask){
             canvasCtx.save();
             canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
             canvasCtx.drawImage(results.segmentationMask, 0, 0,
@@ -759,7 +803,7 @@
           }
           document.getElementById("multiplication").innerHTML = derOperande1 + " X " + derOperande2 + " = " + derProduit; 
             }
-
+            }
         
         //dessous
         }
