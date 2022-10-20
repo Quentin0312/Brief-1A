@@ -39,63 +39,57 @@
         let jeuBallons = 0;
 
         //Menu
-        if(menu == 1){
-            let mainDMenu;
-            let mainGmenu;
-        }
         let dessusBouton1 = [];
         let iterationsMenu = 20;
 
         //Il faut tou déclarer car cette zone ne boucle pas
         //F1 - Jeu Multiplication
-        if(jeuMultiplication == 1){
 
-            //Déclaration variable code hand
+        //Déclaration variable code hand
 
-            var imgNuage = new Image();
-            imgNuage.src = "images/nuage_1_transp.png";
+        var imgNuage = new Image();
+        imgNuage.src = "images/nuage_1_transp.png";
 
-            let mainG = [];
-            let sommeMG = 0;
-            let mainD = [];
-            let sommeMD = 0;
+        let mainG = [];
+        let sommeMG = 0;
+        let mainD = [];
+        let sommeMD = 0;
 
-            
-            let conditionNuage1 = 0; // 1=> nuage affiché
-            let conditionNuage2 = 0; // "
-            let conditionNuage3 = 0;
-            let conditionNuage4 = 0;
+        
+        let conditionNuage1 = 0; // 1=> nuage affiché
+        let conditionNuage2 = 0; // "
+        let conditionNuage3 = 0;
+        let conditionNuage4 = 0;
 
-            let resultatM1 = [];
-            let resultatM2 = [];
-            let resultatTotal = [];
+        let resultatM1 = [];
+        let resultatM2 = [];
+        let resultatTotal = [];
 
-            let zero = [];
-            let un = [];
-            let deux = [];
-            let trois = [];
-            let quatre = [];
-            let cinq = [];
+        let zero = [];
+        let un = [];
+        let deux = [];
+        let trois = [];
+        let quatre = [];
+        let cinq = [];
 
-            let iterations = 20; //itérations entré valeurs chiffre mais aussi symbole indexs contact
+        let iterations = 20; //itérations entré valeurs chiffre mais aussi symbole indexs contact
 
-            let mainM1;
-            let mainM2;
-            let totalTime;
+        let mainM1;
+        let mainM2;
+        let totalTime;
 
-            let symboleIndexs = [];
-            let symboleIndexs2 = []; //permet de reinit les nuages
-            let indexs = 0;
-            let phalangeIndexs = 0;
+        let symboleIndexs = [];
+        let symboleIndexs2 = []; //permet de reinit les nuages
+        let indexs = 0;
+        let phalangeIndexs = 0;
 
-            let operande1 = 0;
-            let operande2 = 0;
-            let produit;
+        let operande1 = 0;
+        let operande2 = 0;
+        let produit;
 
-            let derOperande1;
-            let derOperande2;
-            let derProduit;
-        }
+        let derOperande1;
+        let derOperande2;
+        let derProduit;
 
         console.log("fin decl variable");
 
@@ -180,7 +174,8 @@
                         }
                         if(derDessusBouton1Verdict > 0.90 * iterationsMenu){
                             //action
-                            console.log("'click'");
+                            // console.log("'click'");
+                            jeuMultiplication = 1;
                         }
                     }
 
