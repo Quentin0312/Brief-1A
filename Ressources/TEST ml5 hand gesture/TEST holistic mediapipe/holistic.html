@@ -61,6 +61,9 @@
 
         var img = new Image();
         img.src = "images/beach.jpg";
+
+        var imgNuage = new Image();
+        imgNuage.src = "images/nuage_1_transp.png";
         
         function onResults(results) {
           if(results.segmentationMask){
@@ -75,6 +78,7 @@
           //   canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
           canvasCtx.drawImage(
                 results.image, 0, 0, canvasElement.width, canvasElement.height);
+
           
             // Only overwrite missing pixels.
             canvasCtx.globalCompositeOperation = 'destination-atop';
@@ -82,8 +86,13 @@
             // flux video
             canvasCtx.drawImage(
                 img, 0, 0, canvasElement.width, canvasElement.height);
-          
+
             canvasCtx.globalCompositeOperation = 'source-over';
+            canvasCtx.drawImage(imgNuage,1000,0,230,144); //Nuage mainM1 mettre en variable pour pouvoir modifier une seul place nuage + contenu
+            canvasCtx.drawImage(imgNuage,650,0,230,144); //Nuage "x"
+            canvasCtx.drawImage(imgNuage,400,0,230,144); //Nuage mainM2
+            canvasCtx.drawImage(imgNuage,150,0,230,144); //Nuage produit
+
           //   drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
           //                  {color: '#00FF00', lineWidth: 4}); //body batons
           //   drawLandmarks(canvasCtx, results.poseLandmarks,
@@ -98,6 +107,7 @@
                           {color: '#00CC00', lineWidth: 5}); //batons main droite
             drawLandmarks(canvasCtx, results.rightHandLandmarks,
                           {color: '#FF0000', lineWidth: 2}); //points main droite
+
             canvasCtx.restore();
 
           //Intégration du code hand a faire ici-------------------------------------------
@@ -105,6 +115,8 @@
           let chiffre1;
           let chiffre2;
           let chiffreTotal;
+
+
 
           //Détermine le symbole contact indexs
           if (results.rightHandLandmarks && results.leftHandLandmarks){
@@ -129,6 +141,7 @@
           if (results.rightHandLandmarks && indexs > phalangeIndexs || results.rightHandLandmarks && !results.leftHandLandmarks){
               let main1 = results.rightHandLandmarks;
               chiffre1 = 0;
+              console.log(main1[8].y)
 
               //Pos main et entrée dans chiffre 1, valeur live
               if(main1[2].y > main1[9].y){ //Quand mains "à l'endroit"
