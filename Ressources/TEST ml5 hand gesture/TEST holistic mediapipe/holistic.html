@@ -33,6 +33,9 @@
         var img = new Image();
         img.src = "images/beach.jpg";
 
+
+        let numImage = 0;
+
         // var imgMontagne = new Image();
         // img.src = "images/montagne.jpg";
 
@@ -44,6 +47,8 @@
         //Menu
         let dessusBouton1 = [];
         let iterationsMenu = 20;
+
+        let dessusBouton3 = [];
 
         //Il faut tou déclarer car cette zone ne boucle pas
         //F1 - Jeu Multiplication
@@ -140,10 +145,6 @@
                     canvasCtx.fillText("Background",1000,450);
                     canvasCtx.restore();
 
-
-
-
-
                     //position main droite
                     let posMainD = [];
                     let posEnX = 0;
@@ -177,6 +178,7 @@
                         dessusBouton1.push("0");
                     }
                     // console.log(dessusBouton1);
+                    //action en conséquence selon iterationsMenu
                     if(dessusBouton1.length >= iterationsMenu){
                         let derDessusBouton1 = dessusBouton1.slice(-iterationsMenu);
                         let derDessusBouton1Verdict = 0;
@@ -190,9 +192,40 @@
                         }
                     }
 
+                    //detecte si main droite au dessus bouton "background"
+                    if(results.rightHandLandmarks && posMainD[0] >= 0.01 && posMainD[0] <= 0.22 && posMainD[1] <= 0.65 && posMainD[1] >= 0.55){
+                        // console.log("tu y es mon pote");
+                        dessusBouton3.push("1");
+                    }
+                    else{
+                        dessusBouton3.push("0");
+                    }
 
+                    //action en conséquences
+                    if(dessusBouton3.length >= iterationsMenu){
+                        let derDessusBouton3 = dessusBouton3.slice(-iterationsMenu);
+                        let derDessusBouton3Verdict = 0;
+                        for(let i = 0;i<iterationsMenu;i++){
+                            derDessusBouton3Verdict += Number(derDessusBouton3[i]);
+                        }
+                        if(derDessusBouton3Verdict > 0.90 * iterationsMenu){
+                            //action
+                            console.log("'click'");
+                            // numImage += 1;
+                            // console.log(img.src);
+                            img.src = "images/montagne.jpg";
+                            if (img.src = "images/montagne.jpg"){
+                                img.src = "beach.jpg";
+                            }
+                            // if(img.src == "images/beach.jpg"){
+                            //     img.src = "images/montagne.jpg";                      
+                            // }
+                            // else if(img.src == "images/montagne.jpg"){
+                            //     img.src = "images/beach.jpg";
+                            // }
 
-
+                        }
+                    }
 
                     //A la fin effacer toute les variable utilisé soit avec undefined soit =0
                 }
