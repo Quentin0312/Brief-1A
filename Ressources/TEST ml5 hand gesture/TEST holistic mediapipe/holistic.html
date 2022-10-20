@@ -125,7 +125,6 @@
             if(conditionNuage1 == 1 && conditionNuage2 ==1 && produit == derOperande1 * derOperande2){
                 canvasCtx.drawImage(imgNuage,145,0,230,144); //Nuage produit
                 conditionNuage4 =1;
-            
             }
             //Combiner les structures logiques logiques ci-dessus
 
@@ -154,31 +153,34 @@
 
 
             canvasCtx.font = "100px Georgia";
-            //Dans nuage 1 afficher derOperande1 //if nuage resultat affiché
 
             //Dans nuage 1 afficher le live main
             if (operande1 == 0 && totalTime >0 && totalTime <=10 && conditionNuage2 == 0 ){ //else if ?
-                canvasCtx.fillText(totalTime,130,100); //operande 1
+                canvasCtx.fillText(totalTime,130,100);
             }
             //Dans nuage 1 afficher operande 1
             else if(totalTime >0 && totalTime <=10 && conditionNuage4 != 1 || conditionNuage4 != 1 && conditionNuage2 == 1){ // ajouter || condition 1 = 1
                 canvasCtx.fillText(operande1,130,100); //operande 1
             }
-
+            //Dans nuage 1 afficher derOperande1
+            else if(derOperande1 != undefined){
+                canvasCtx.fillText(derOperande1,130,100); //derOperande 1
+            }
             //Dans le nuage operateur affiche "X"
-            if (operande1 > 0 && operande1 <= 10){
+            if(operande1 > 0 && operande1 <= 10 || conditionNuage2 == 1){
                 canvasCtx.fillText('X',360,100); // operateur
             }
             //Dans nuage 3 afficher live main
             if(conditionNuage1 == 1 && conditionNuage2 == 1 && totalTime >0 && totalTime <=10 && conditionNuage4 != 1){
                 canvasCtx.fillText(totalTime,600,100); //operande 2
             }
-            //Dans nuage 4 afficher resultat
-            if(conditionNuage1 == 1 && conditionNuage2 == 1 && produit == operande1 * operande2){
-                canvasCtx.fillText('='+produit,900,100); // produit
-
+            else if(derOperande2 != undefined){
+                canvasCtx.fillText(derOperande2,600,100); //derOperande 2
             }
-
+            //Dans nuage 4 afficher resultat
+            if(conditionNuage1 == 1 && conditionNuage2 == 1 && produit == derOperande1 * derOperande2){
+                canvasCtx.fillText('='+produit,925,100); // produit
+            }
             canvasCtx.restore();
 
           //Intégration du code hand a faire ici-------------------------------------------
