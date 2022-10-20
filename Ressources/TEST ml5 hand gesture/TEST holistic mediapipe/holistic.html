@@ -62,6 +62,7 @@
         let totalTime;
 
         let symboleIndexs = [];
+        let symboleIndexs2 = []; //permet de reinit les nuages
         let indexs = 0;
         let phalangeIndexs = 0;
 
@@ -94,7 +95,6 @@
           canvasCtx.drawImage(
                 results.image, 0, 0, canvasElement.width, canvasElement.height);
 
-          
             // Only overwrite missing pixels.
             canvasCtx.globalCompositeOperation = 'destination-atop';
 
@@ -180,6 +180,46 @@
             //Dans nuage 4 afficher resultat
             if(conditionNuage1 == 1 && conditionNuage2 == 1 && produit == derOperande1 * derOperande2){
                 canvasCtx.fillText('='+produit,925,100); // produit
+            }
+
+            //Réinitialisation des nuages-----------------------------------------------------------------------
+            if(conditionNuage1 == 1 && conditionNuage2 == 1 && conditionNuage3 == 1 && conditionNuage4 == 1){
+            //Detection symbole indexs
+            if (results.rightHandLandmarks && results.leftHandLandmarks){
+
+                if (indexs < phalangeIndexs){
+                    symboleIndexs2.push("1"); //1 Correspond à contact
+                    // console.log("Contact!!!!!!!!!!");
+                }
+                else if(indexs > phalangeIndexs){
+                    symboleIndexs2.push("0"); //0 Correspond à pas de contact
+                    // console.log("Pas contact");
+                }
+
+                if (symboleIndexs2.length >= iterations){
+
+                    let dersymboleIndexs2 = symboleIndexs2.slice(-iterations);
+                    let dersymboleIndexs2Verdict = 0;
+                    for (let i = 0; i < iterations; i++){
+                        dersymboleIndexs2Verdict += Number(dersymboleIndexs2[i]);
+                    }
+                    if (dersymboleIndexs2Verdict > 0.90*iterations){
+                        //action
+                        conditionNuage1 = 0;
+                        conditionNuage2 = 0;
+                        conditionNuage3 = 0;
+                        conditionNuage4 = 0;
+                        operande1 = 0;
+                        operande2 = 0;
+                        produit = undefined;
+
+                        derOperande1= undefined;
+                        derOperande2= undefined;
+                        derProduit= undefined;
+                    }
+                }
+            }
+
             }
             canvasCtx.restore();
 
@@ -677,6 +717,7 @@
                     derSymboleIndexsVerdict += Number(derSymboleIndexs[i]);
                 }
                 if (derSymboleIndexsVerdict > 0.90*iterations){
+                    //action
 
 
 
