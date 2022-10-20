@@ -35,6 +35,7 @@
         
         let conditionNuage1 = 0; // 1=> nuage affiché
         let conditionNuage2 = 0; // "
+        let conditionNuage3 = 0;
 
         let resultatM1 = [];
         let resultatM2 = [];
@@ -99,18 +100,19 @@
             console.log(mainM1);
 
             //Affiche le nuage 1
-            if(totalTime >0 && totalTime <=10 || totalTime=="erreurM1"){ // ajouter || condition 1 = 1
+            if(totalTime >0 && totalTime <=10 || conditionNuage1 == 1){ // ajouter || condition 1 = 1 ou  operande1 != 0
                 canvasCtx.drawImage(imgNuage,1000,0,230,144); //Nuage mainM1 mettre en variable pour pouvoir modifier une seul place nuage + contenu
                 conditionNuage1 = 1;
             }
             //Affiche le nuage 2
-            if(operande1 > 0 && operande1 <= 10 ){
+            if(operande1 > 0 && operande1 <= 10 || conditionNuage3 == 1){
                 canvasCtx.drawImage(imgNuage,750,0,230,144); //Nuage "x"
                 conditionNuage2 = 1;
             }
             //Affiche le nuage 3
             if(conditionNuage1 == 1 && conditionNuage2 == 1){
                 canvasCtx.drawImage(imgNuage,500,0,230,144); //Nuage mainM2
+                conditionNuage3 =1;
             }
             //Affiche le nuage 4
             if(conditionNuage1 == 1 && conditionNuage2 ==1 && produit == operande1 * operande2){
@@ -152,14 +154,17 @@
 
 
             canvasCtx.font = "100px Georgia";
+            //Dans nuage 1 afficher derOperande1 //if nuage resultat affiché
+
             //Dans nuage 1 afficher le live main
-            if (operande1 == 0 && totalTime >0 && totalTime <=10 ){
+            if (operande1 == 0 && totalTime >0 && totalTime <=10 ){ //else if ?
                 canvasCtx.fillText(totalTime,130,100); //operande 1
             }
             //Dans nuage 1 afficher operande 1
-            else if(totalTime >0 && totalTime <=10 || totalTime=="erreurM1"){ // ajouter || condition 1 = 1
+            else if(totalTime >0 && totalTime <=10 || totalTime=="erreurM1" || conditionNuage2 == 1){ // ajouter || condition 1 = 1
                 canvasCtx.fillText(operande1,130,100); //operande 1
             }
+
             //Dans le nuage operateur affiche "X"
             if (operande1 > 0 && operande1 <= 10){
                 canvasCtx.fillText('X',360,100); // operateur
@@ -614,7 +619,7 @@
 
           //Affichage total time
           if(mainM2 > 0 && mainM2 <=10 && mainM1 > 0 && mainM1 <=10 && results.rightHandLandmarks && results.leftHandLandmarks){
-          totalTime = mainM1 + mainM2;
+            totalTime = mainM1 + mainM2;
           }
           else if(results.rightHandLandmarks && mainM1 > 0 && mainM1 <=10){
             totalTime = mainM1;
