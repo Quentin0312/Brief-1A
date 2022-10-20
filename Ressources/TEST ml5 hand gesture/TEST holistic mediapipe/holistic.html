@@ -94,11 +94,16 @@
 
             canvasCtx.globalCompositeOperation = 'source-over';
             console.log(mainM1);
-            if(mainM1 >0 && mainM1 <=10 || mainM1=="erreurM1"){ // ajouter || condition 1 = 1
+
+            if(totalTime >0 && totalTime <=10 || totalTime=="erreurM1"){ // ajouter || condition 1 = 1
                 canvasCtx.drawImage(imgNuage,1000,0,230,144); //Nuage mainM1 mettre en variable pour pouvoir modifier une seul place nuage + contenu
             }
+            if(operande1 > 0 && operande1 <= 10 ){
+                canvasCtx.drawImage(imgNuage,750,0,230,144); //Nuage "x"
 
-            canvasCtx.drawImage(imgNuage,750,0,230,144); //Nuage "x"
+            }
+
+
             canvasCtx.drawImage(imgNuage,500,0,230,144); //Nuage mainM2
             canvasCtx.drawImage(imgNuage,145,0,230,144); //Nuage produit
             
@@ -121,6 +126,7 @@
             drawLandmarks(canvasCtx, results.rightHandLandmarks,
                           {color: '#FF0000', lineWidth: 2}); //points main droite
             
+            //Inversion des 
             // translate context to center of canvas
             canvasCtx.translate(1280, 0);
 
@@ -130,11 +136,18 @@
 
 
             canvasCtx.font = "100px Georgia";
-            if(mainM1 >0 && mainM1 <=10 || mainM1=="erreurM1"){ // ajouter || condition 1 = 1
-                canvasCtx.fillText(mainM1,130,100); //operande 1
+            if (operande1 == 0 && totalTime >0 && totalTime <=10 ){
+                canvasCtx.fillText(totalTime,130,100); //operande 1
+            }
+            else if(totalTime >0 && totalTime <=10 || totalTime=="erreurM1"){ // ajouter || condition 1 = 1
+                canvasCtx.fillText(operande1,130,100); //operande 1
+            }
+            if (operande1 > 0 && operande1 <= 10){
+                canvasCtx.fillText('X',360,100); // operateur
+
             }
 
-            canvasCtx.fillText('X',360,100); // operateur
+
             canvasCtx.fillText('1',600,100); //operande 2
             canvasCtx.fillText('=100',900,100); // produit
 
