@@ -33,6 +33,9 @@
         var img = new Image();
         img.src = "images/beach.jpg";
 
+        // var imgMontagne = new Image();
+        // img.src = "images/montagne.jpg";
+
         //1=> entre dans cette fonctionalité
         let menu = 1;
         let jeuMultiplication = 0;
@@ -122,13 +125,19 @@
                     // flip context horizontally
                     canvasCtx.scale(-1, 1);
 
+                    //bouton F1
                     canvasCtx.fillStyle = 'yellow';
                     canvasCtx.fillRect(130, 55, 500, 60);
-
                     canvasCtx.font = "50px Georgia";
                     canvasCtx.fillStyle = 'blue';
                     canvasCtx.fillText("Multiplication ludique",130,100);
 
+                    //bouton background
+                    canvasCtx.fillStyle = 'white';
+                    canvasCtx.fillRect(1000, 400, 266, 60);
+                    canvasCtx.font = "50px Georgia";
+                    canvasCtx.fillStyle = 'green';
+                    canvasCtx.fillText("Background",1000,450);
                     canvasCtx.restore();
 
 
