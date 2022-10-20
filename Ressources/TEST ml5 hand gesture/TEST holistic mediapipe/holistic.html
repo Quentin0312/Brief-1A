@@ -40,7 +40,9 @@
 
         //Menu
         if(menu == 1){
-
+            let mainDMenu;
+            console.log("decla");
+            let mainGmenu;
         }
 
         //Il faut tou déclarer car cette zone ne boucle pas
@@ -100,6 +102,7 @@
             //Menu
             if(menu == 1){
                 if(results.segmentationMask){
+                    //Affichage du canva ----------------------------------------------------------------------------------------------------------
                     canvasCtx.save();
                     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
                     canvasCtx.drawImage(results.segmentationMask, 0, 0,canvasElement.width, canvasElement.height);
@@ -116,11 +119,54 @@
                     drawLandmarks(canvasCtx, results.leftHandLandmarks,{color: '#00FF00', lineWidth: 2});// points main gauche
                     drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS,{color: '#00CC00', lineWidth: 5}); //batons main droite
                     drawLandmarks(canvasCtx, results.rightHandLandmarks,{color: '#FF0000', lineWidth: 2}); //points main droite
+
+                    //Inversion des elements
+                    canvasCtx.translate(1280, 0);
+                    // flip context horizontally
+                    canvasCtx.scale(-1, 1);
+
+                    canvasCtx.fillStyle = 'yellow';
+                    canvasCtx.fillRect(130, 55, 500, 60);
+
+                    canvasCtx.font = "50px Georgia";
+                    canvasCtx.fillStyle = 'blue';
+                    canvasCtx.fillText("Multiplication ludique",130,100);
+
+                    canvasCtx.restore();
+
+
+
+
+
+
                     
+                    //Algo menu => sélection avec main droite
+                    //detection moyenne points de la main droite
+                    if(results.rightHandLandmarks){
+                        let posMainD = [];
+                        let posEnX = 0;
+                        let posEnY = 0;
+                        //moy des x (0 à droite 20 à gauche attention image mirrored)
+                        for(let i = 0; i<21;i++){
+                            posEnX += results.rightHandLandmarks[i].x;
+                        }
+                        // console.log("X =>",results.rightHandLandmarks[8].x);
+                        //moy des y (0 en haut 20 en bas )
+                        for(let i = 0;i<21;i++){
+                            posEnY += results.rightHandLandmarks[i].y;
+                        }
+                        // console.log("Y=>",results.rightHandLandmarks[8].y);
+                    }
+
+                    if(results.rightHandLandmarks ){
+
+                    }
 
 
 
 
+
+                    //A la fin effacer toute les variable utilisé soit avec undefined soit =0
                 }
             }
             //entre dans F1
