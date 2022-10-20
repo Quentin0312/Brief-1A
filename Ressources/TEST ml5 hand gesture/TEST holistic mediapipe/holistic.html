@@ -6,9 +6,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
-  <script src="giffler.min.js"></script>
-  <script src="https://unpkg.com/konva@8/konva.min.js"></script>
-
   <link rel="stylesheet" href="holistic.css">
   <!-- <script src="holistic.js"></script> -->
 
@@ -25,7 +22,6 @@
     <h1 id="resultatM2Time"> M2 time</h1>
     <h1 id="resultatTotalTime"> Total time</h1>
     <h1 id="multiplication"> Multiplication</h1>
-    <div id="container"></div>
 
     <script type="module">
         const videoElement = document.getElementsByClassName('input_video')[0];
@@ -45,7 +41,7 @@
         let quatre = [];
         let cinq = [];
 
-        let iterations = 10; //itérations entré valeurs chiffre mais aussi symbole indexs contact; min 10 a cause des calculs ?
+        let iterations = 20; //itérations entré valeurs chiffre mais aussi symbole indexs contact
 
         let mainM1;
         let mainM2;
@@ -65,43 +61,8 @@
 
         var img = new Image();
         img.src = "images/beach.jpg";
-
-        const imgNuage = new Image();
-        imgNuage.src = 'images/nuage_1_transp.png';
-
+        
         function onResults(results) {
-          //debut ajout gif
-          var width = window.innerWidth;
-          var height = window.innerHeight;
-
-          var stage = new Konva.Stage({
-            container: 'container',
-            width: width,
-            height: height,
-          });
-
-          var layer = new Konva.Layer();
-          stage.add(layer);
-
-          var canvas = document.createElement('canvas');
-          // use external library to parse and draw gif animation
-          function onDrawFrame(ctx, frame) {
-            // update canvas that we are using for Konva.Image
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(frame.buffer, frame.x, frame.y);
-            // redraw the layer
-            layer.draw();
-          }
-
-    gifler('https://media1.giphy.com/media/l4pTpdRiFv10jFlNC/200w_d.gif').frames(canvas, onDrawFrame, true);
-          // draw resulted canvas into the stage as Konva.Image
-          var image = new Konva.Image({
-            image: canvas
-          });
-          layer.add(image);
-          //fin ajout gif
-
-
           if(results.segmentationMask){
             canvasCtx.save();
             canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
@@ -123,14 +84,12 @@
                 img, 0, 0, canvasElement.width, canvasElement.height);
           
             canvasCtx.globalCompositeOperation = 'source-over';
-            canvasCtx.drawImage(imgNuage,500,0,345,216);
-
           //   drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
           //                  {color: '#00FF00', lineWidth: 4}); //body batons
           //   drawLandmarks(canvasCtx, results.poseLandmarks,
           //                 {color: '#FF0000', lineWidth: 2}); //body points
-            // drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
-            //                {color: '#C0C0C070', lineWidth: 1}); //visage mesh
+          //   drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
+          //                  {color: '#C0C0C070', lineWidth: 1}); //visage mesh
             drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS,
                           {color: '#CC0000', lineWidth: 5}); // batons main gauche
             drawLandmarks(canvasCtx, results.leftHandLandmarks,
