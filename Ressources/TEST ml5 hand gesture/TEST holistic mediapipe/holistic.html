@@ -25,14 +25,18 @@
 
     <script type="module">
         const videoElement = document.getElementsByClassName('input_video')[0];
-
-        videoElement.msHorizontalMirror = true;
-
         const canvasElement = document.getElementsByClassName('output_canvas')[0];
         const canvasCtx = canvasElement.getContext('2d');
 
+        var img = new Image();
+        img.src = "images/beach.jpg";
+
+        //À isoler ! debut --------------------------------------
         //Déclaration variable code hand
 
+        var imgNuage = new Image();
+        imgNuage.src = "images/nuage_1_transp.png";
+        
         let mainG = [];
         let sommeMG = 0;
         let mainD = [];
@@ -74,11 +78,7 @@
         let derOperande2;
         let derProduit;
 
-        var img = new Image();
-        img.src = "images/beach.jpg";
-
-        var imgNuage = new Image();
-        imgNuage.src = "images/nuage_1_transp.png";
+        //À isoler ! debut --------------------------------------
         
         function onResults(results) {
           if(results.segmentationMask){
@@ -143,10 +143,9 @@
             drawLandmarks(canvasCtx, results.rightHandLandmarks,
                           {color: '#FF0000', lineWidth: 2}); //points main droite
             
-            //Inversion des 
+            //Inversion des elements
             // translate context to center of canvas
             canvasCtx.translate(1280, 0);
-
             // flip context horizontally
             canvasCtx.scale(-1, 1);
 
@@ -759,7 +758,6 @@
               document.getElementById("resultatM2Time").innerHTML = "Main 2 : "+mainM2;
           }
           document.getElementById("multiplication").innerHTML = derOperande1 + " X " + derOperande2 + " = " + derProduit; 
-
             }
 
         
@@ -789,7 +787,7 @@
           height: 720
         });
         camera.start();
-        </script>
+    </script>
 
   </div>
 </body>
